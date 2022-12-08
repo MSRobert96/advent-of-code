@@ -4,14 +4,6 @@ from utils import advent
 YEAR = '2022'
 DAY = '08'
 
-class File:
-    def __init__(self, size, name):
-        self.name = name
-        self.size = int(size)
-
-    def __str__(self):
-        return self.name + ' ' + str(self.size)
-
 def sol1():
     grid = advent.read_input_as_grid(YEAR, DAY).astype(int)
     visible = np.full_like(grid, False, bool)
