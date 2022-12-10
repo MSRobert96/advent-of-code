@@ -19,12 +19,8 @@ def sol1():
 def sol2():
     grid = advent.read_input_as_grid(YEAR, DAY).astype(int)
     scores = np.zeros_like(grid)
-    rows, cols = grid.shape
 
-    for (r,c), el in np.ndenumerate(grid):
-        if r == 0 or r == rows-1 or c == 0 or c == cols-1 :
-            continue
-        
+    for (r,c), el in np.ndenumerate(grid):        
         left = right = top = bottom = 0
 
         for val in grid[r, :c][::-1]: # left

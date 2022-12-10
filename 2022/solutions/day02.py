@@ -3,16 +3,17 @@ from utils import advent
 YEAR = '2022'
 DAY = '02'
 
+
 def sol1():
     WIN = 6
     DRAW = 3
     LOSE = 0
 
-    SCORES = { 'X': 1, 'Y': 2, 'Z': 3}
+    SCORES = {'X': 1, 'Y': 2, 'Z': 3}
 
-    WIN_CONDITIONS = { ('A', 'Y'), ('B', 'Z'), ('C', 'X') }
-    DRAW_CONDITIONS = { ('A', 'X'), ('B', 'Y'), ('C', 'Z') }
-    LOSE_CONDITIONS = { ('A', 'Z'), ('B', 'X'), ('C', 'Y') }
+    WIN_CONDITIONS = {('A', 'Y'), ('B', 'Z'), ('C', 'X')}
+    DRAW_CONDITIONS = {('A', 'X'), ('B', 'Y'), ('C', 'Z')}
+    LOSE_CONDITIONS = {('A', 'Z'), ('B', 'X'), ('C', 'Y')}
 
     total_score = 0
 
@@ -27,17 +28,18 @@ def sol1():
 
     return total_score
 
+
 def sol2():
     WIN = 6
     DRAW = 3
     LOSE = 0
 
-    ENDINGS = { 'X': 0, 'Y': 3, 'Z': 6 }
-    MOVES = { 'R': 1, 'P': 2, 'S': 3 }
+    ENDINGS = {'X': 0, 'Y': 3, 'Z': 6}
+    MOVES = {'R': 1, 'P': 2, 'S': 3}
 
-    WIN_CONDITIONS = { 'A': 'P', 'B': 'S', 'C': 'R' }
-    DRAW_CONDITIONS = { 'A': 'R', 'B': 'P', 'C': 'S' }
-    LOSE_CONDITIONS = { 'A': 'S', 'B': 'R', 'C': 'P' }
+    WIN_CONDITIONS = {'A': 'P', 'B': 'S', 'C': 'R'}
+    DRAW_CONDITIONS = {'A': 'R', 'B': 'P', 'C': 'S'}
+    LOSE_CONDITIONS = {'A': 'S', 'B': 'R', 'C': 'P'}
 
     total_score = 0
 
@@ -56,5 +58,6 @@ def sol2():
 
     return total_score
 
-print(sol1()) # 11906
-print(sol2()) # 11186
+
+print(sol1())  # 11906
+print(sol2())  # 11186

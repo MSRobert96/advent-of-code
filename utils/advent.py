@@ -1,12 +1,12 @@
 import numpy as np
 
-def read_input(year, day) -> str:
-    with open(f"../inputs/{year}_{day}.txt", "r") as file:
+def read_input(year, day, example = False) -> str:
+    with open(f"../{'examples' if example else 'inputs'}/{year}_{day}.txt", "r") as file:
         return file.read().strip()
 
-def read_input_as_lines(year, day) -> str:
-    return read_input(year, day).splitlines()
+def read_input_as_lines(year, day, example = False) -> str:
+    return read_input(year, day, example).splitlines()
 
-def read_input_as_grid(year, day):
-    lines = read_input_as_lines(year, day)
+def read_input_as_grid(year, day, example = False):
+    lines = read_input_as_lines(year, day, example)
     return np.array([[*line] for line in lines])

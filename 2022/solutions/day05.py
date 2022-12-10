@@ -1,41 +1,30 @@
 import math
 import re
-import numpy as np
-from textwrap import wrap
 from utils import advent
 
 YEAR = '2022'
 DAY = '05'
 
+
 def init_stacks(raw_header):
-    stacks = []
-    n_stacks = math.ceil(len(raw_header[0])/4)
-    for i in range(n_stacks):
-        stacks.append([])
+    stacks = [[] for i in range(math.ceil(len(raw_header[0])/4))]
 
     for row in raw_header:
-        data = [el.strip().replace('[', '').replace(']', '') for el in wrap(row, 4, drop_whitespace=False)]
-        for idx, el in enumerate(data):
+        for idx, el in enumerate(row[idx:idx+4].strip('[ ]') for idx in range(0, len(row), 4)):
             if el != '':
                 stacks[idx].insert(0, el)
-    
+
     return stacks
 
+
 def init_moves(raw_moves):
-    moves = []
-    for move in raw_moves:
-        moves.append(re.search(r'move (?P<amount>\d+?) from (?P<from>\d) to (?P<to>\d)', move).groupdict())
-        
-    return moves
+    return (re.search(r'move (?P<amount>\d+?) from (?P<from>\d) to (?P<to>\d)', move).groupdict() for move in raw_moves)
+
 
 def sol1():
     input = advent.read_input_as_lines(YEAR, DAY)
-
-    raw_header = input[:input.index('')-1]
-    raw_moves = input[input.index('')+1:]
-    
-    stacks = init_stacks(raw_header)
-    moves = init_moves(raw_moves)
+    stacks = init_stacks(input[:input.index('')-1])
+    moves = init_moves(input[input.index('')+1:])
 
     for move in moves:
         amount = int(move['amount'])
@@ -46,14 +35,11 @@ def sol1():
 
     return ''.join([stack[-1] for stack in stacks if len(stack) > 0])
 
+
 def sol2():
     input = advent.read_input_as_lines(YEAR, DAY)
-
-    raw_header = input[:input.index('')-1]
-    raw_moves = input[input.index('')+1:]
-    
-    stacks = init_stacks(raw_header)
-    moves = init_moves(raw_moves)
+    stacks = init_stacks(input[:input.index('')-1])
+    moves = init_moves(input[input.index('')+1:])
 
     for move in moves:
         amount = int(move['amount'])
@@ -66,5 +52,5 @@ def sol2():
     return ''.join([stack[-1] for stack in stacks if len(stack) > 0])
 
 
-print(sol1()) # ZWHVFWQWW
-print(sol2()) # HZFZCCWWV
+print(sol1())  # ZWHVFWQWW
+print(sol2())  # HZFZCCWWV
