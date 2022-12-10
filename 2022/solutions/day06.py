@@ -4,20 +4,18 @@ YEAR = '2022'
 DAY = '06'
 
 
+def find_token_end(input, size):
+    return [len(set(input[idx-size:idx])) for idx in range(size, len(input))].index(size)+size
+
+
 def sol1():
     input = advent.read_input(YEAR, DAY)
-
-    for idx in range(0, len(input)-4):
-        if len(set(input[idx:idx+4])) == 4:
-            return idx+4
+    return find_token_end(input, 4)
 
 
 def sol2():
     input = advent.read_input(YEAR, DAY)
-
-    for idx in range(0, len(input)-14):
-        if len(set(input[idx:idx+14])) == 14:
-            return idx+14
+    return find_token_end(input, 14)
 
 
 print(sol1())  # 1542
